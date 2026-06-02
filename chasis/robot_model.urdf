@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+	<robot name="first_robot">
+		
+		<material name="white">
+			<color rgba="1 1 1 1" />
+		</material>
+
+		<material name="black">
+			<color rgba="0 0 0 1" />
+		</material>
+
+		<material name="pink">
+			<color rgba="1 0 0.5 1" />
+		</material>
+
+		<link name="dummy" />
+
+		<link name="base_link">
+			<visual>
+				<origin xyz="0 0 0.1" />
+				<geometry>
+					<box size="0.4 0.4 0.2" />
+				</geometry>
+				<material name="white" />
+			</visual>
+		</link>
+
+		<link name="lidar">
+			<visual>
+				<geometry>
+					<cylinder length="0.05" radius="0.1" />
+				</geometry>
+				<material name="pink" />
+			</visual>
+		</link>
+
+		<link name="right_wheel">
+			<visual>
+				<geometry>
+					<cylinder length="0.05" radius="0.1" />
+				</geometry>
+				<material name="black" />
+			</visual>
+		</link>
+
+		<link name="left_wheel">
+			<visual>
+				<geometry>
+					<cylinder length="0.05" radius="0.1" />
+				</geometry>
+				<material name="black" />
+			</visual>
+		</link>
+
+		<link name="castor_wheel">
+			<visual>
+				<origin xyz="-0.03 0 0" rpy="0 0 0" />
+				<geometry>
+					<sphere radius="0.03" />
+				</geometry>
+				<material name="black" />
+			</visual>
+		</link>
+
+		<joint name="dummy_joint" type="fixed">
+			<parent link="dummy" />
+			<child link="base_link" />
+			<origin xyz="0.1 0 0" rpy="0 0 0" />
+		</joint>
+
+		<joint name="first_joint" type="fixed">
+			<parent link="base_link" />
+			<child link="lidar" />
+			<origin xyz="0 0 0.225" rpy="0 0 0" />
+		</joint>
+
+		<joint name="wheel_joint_right" type="continuous">
+			<parent link="base_link" />
+			<child link="right_wheel" />
+			<origin xyz="0.15 -0.2 0" rpy="1.57 0 0" />
+		</joint>
+		
+		
+		<joint name="wheel_joint_left" type="continuous">
+			<parent link="base_link" />
+			<child link="left_wheel" />
+			<origin xyz="0.15 0.2 0" rpy="1.57 0 0" />
+		</joint>	
+		
+		<joint name="castor_wheel_joint" type="continuous">
+			<parent link="base_link" />
+			<child link="castor_wheel" />
+			<origin xyz="-0.15 0 -0.03" />
+		</joint>
+	</robot>
